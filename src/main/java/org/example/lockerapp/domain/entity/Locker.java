@@ -25,7 +25,10 @@ public class Locker {
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
+    @Column(name = "grid_x")
     private Integer gridX;
+
+    @Column(name = "grid_y")
     private Integer gridY;
 
     public Locker() {
@@ -114,7 +117,7 @@ public class Locker {
         return "Locker{" +
                 "id=" + id +
                 ", lockerNumber=" + lockerNumber +
-                ", keyNumbers=" + keyNumber +
+                ", keyNumber=" + keyNumber +
                 ", status=" + status +
                 ", room=" + room +
                 ", gridX=" + gridX +

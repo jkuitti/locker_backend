@@ -3,24 +3,25 @@ package org.example.lockerapp.domain;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 public record CreateLockerRequest(
-        @NotBlank(message = ERROR_MESSAGE_LOCKERNUMBER)
+        @NotNull(message = ERROR_MESSAGE_LOCKERNUMBER)
         @Min(value = 0, message = ERROR_MESSAGE_MIN )
         @Max(value = 2000, message = ERROR_MESSAGE_MAX)
         Integer lockerNumber,
 
-        @NotBlank(message = ERROR_MESSAGE_KEYNUMBER)
+        @NotNull(message = ERROR_MESSAGE_KEYNUMBER)
         @Min(value = 0, message = ERROR_MESSAGE_MIN)
         @Max(value = 2000, message = ERROR_MESSAGE_MAX)
         Integer keyNumber,
 
-        @NotBlank(message = ERROR_MESSAGE_MIN)
+        @NotNull(message = ERROR_MESSAGE_MIN)
         @Min(value = 0, message = ERROR_MESSAGE_MIN)
         Integer gridX,
 
-        @NotBlank(message = ERROR_MESSAGE_MIN)
+        @NotNull(message = ERROR_MESSAGE_MIN)
         @Min(value = 0, message = ERROR_MESSAGE_MIN)
         Integer gridY
 ) {

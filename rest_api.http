@@ -1,0 +1,29 @@
+POST http://localhost:8080/api/v1/rooms/1/lockers
+Content-Type: application/json
+
+{
+  "lockerNumber": 2,
+  "keyNumber": 223,
+  "gridX": 5,
+  "gridY": 6
+}
+
+###
+
+POST http://localhost:8080/api/v1/rooms
+Content-Type: application/json
+
+{
+  "name": "Men's Locker Room",
+  "gender": "MEN"
+}
+###
+GET http://localhost:8080/api/v1/rooms/1/lockers
+Accept: application/json
+
+###
+GET http://localhost:8080/api/v1/rooms
+Accept: application/json
+
+###
+

@@ -27,6 +27,7 @@ public class RoomController {
     @PostMapping
     public ResponseEntity<RoomDto> createRoom (@Valid @RequestBody CreateRoomRequest createRoomRequest){
         Room room = roomService.createRoom(createRoomRequest);
+        System.out.println("room:" + room);
         RoomDto createdRoomDto = mapper.toDto(room);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRoomDto);
     }

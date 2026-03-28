@@ -9,4 +9,5 @@ import java.util.List;
 public interface LockerService {
     Locker createLocker(Long roomId, CreateLockerRequest createLockerRequest);
     List<Locker> listLockers(Long roomId);
+    Locker findById(Long lockerId);
 }

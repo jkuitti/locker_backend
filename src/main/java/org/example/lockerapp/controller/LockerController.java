@@ -1,15 +1,46 @@
 package org.example.lockerapp.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.example.lockerapp.domain.CreateLockerRequest;
+import org.example.lockerapp.domain.dto.LockerDto;
+import org.example.lockerapp.domain.entity.Locker;
+import org.example.lockerapp.mapper.Mapper;
+import org.example.lockerapp.service.LockerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/lockers")
+@RequestMapping(path = "/api/v1/rooms/{roomId}/lockers")
 public class LockerController {
 
+    private final LockerService lockerService;
+    private final Mapper mapper;
+
+    public LockerController(LockerService lockerService, Mapper mapper) {
+        this.lockerService = lockerService;
+        this.mapper = mapper;
+    }
+
+    @PostMapping
+    public ResponseEntity<LockerDto> createLocker(
+            @PathVariable Long roomId,
+            @Valid @RequestBody CreateLockerRequest createLockerRequest
+    ){
+        Locker locker = lockerService.createLocker(roomId, createLockerRequest);
+        LockerDto cretedLockerDto = mapper.toDto(locker);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cretedLockerDto);
+    }
+
     @GetMapping
-    public String index(){
-        return "Hello there";
+    public ResponseEntity<List<LockerDto>> listLockers(@PathVariable Long roomId){
+        List<Locker> lockers = lockerService.listLockers(roomId);
+
+        List<LockerDto> lockerDtos = lockers.stream()
+                .map(mapper::toDto)
+                .toList();
+        return ResponseEntity.ok(lockerDtos);
     }
 }

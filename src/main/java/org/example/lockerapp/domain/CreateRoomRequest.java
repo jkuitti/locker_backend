@@ -1,6 +1,7 @@
 package org.example.lockerapp.domain;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.example.lockerapp.domain.entity.Gender;
 import org.hibernate.validator.constraints.Length;
 
@@ -9,7 +10,7 @@ public record CreateRoomRequest(
         @Length(max = 100, message = ERROR_MESSAGE_NAME_LENGTH)
         String name,
 
-        @NotBlank(message = ERROR_MESSAGE_GENDER)
+        @NotNull(message = ERROR_MESSAGE_GENDER)
         Gender gender
 ) {
 

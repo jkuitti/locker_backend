@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public interface AssignmentService {
-    Assignment createAssignment(CreateAssignmentRequest createAssignmentRequest);
+    Assignment createAssignment(Long lockerId, CreateAssignmentRequest createAssignmentRequest);
     List<Assignment> listAssignments();
+    Assignment findById(Long assignmentId);
 }
