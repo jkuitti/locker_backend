@@ -37,9 +37,7 @@ public class LockerSerciveImpl implements LockerService{
                 createLockerRequest.gridY()
         );
 
-        Locker savedLocker = lockerRepository.save(locker);
-        System.out.println("saved locker:" + locker);
-        return savedLocker;
+        return lockerRepository.save(locker);
     }
 
     @Override

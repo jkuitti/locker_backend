@@ -10,5 +10,6 @@ import java.util.List;
 public interface AssignmentService {
     Assignment createAssignment(Long lockerId, CreateAssignmentRequest createAssignmentRequest);
     List<Assignment> listAssignments();
-    Assignment findById(Long assignmentId);
+    Assignment findByAssignmentId(Long assignmentId);
+    Assignment findByLockerId(Long lockerId);
 }
