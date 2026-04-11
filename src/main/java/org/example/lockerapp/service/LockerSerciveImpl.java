@@ -53,4 +53,16 @@ public class LockerSerciveImpl implements LockerService{
         return lockerRepository.findById(lockerId)
                 .orElseThrow(() -> new LockerNotFoundException(lockerId));
     }
+
+    @Override
+    public List<Locker> getAllLockers() {
+        return lockerRepository.findAll();
+    }
+
+    @Override
+    public void deleteLocker(Long lockerId) {
+        lockerRepository.findById(lockerId).orElseThrow(()->
+                new LockerNotFoundException(lockerId));
+        lockerRepository.deleteById(lockerId);
+    }
 }

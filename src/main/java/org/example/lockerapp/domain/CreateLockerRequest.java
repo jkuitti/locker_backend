@@ -7,10 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 
 public record CreateLockerRequest(
-        @NotNull(message = ERROR_MESSAGE_LOCKERNUMBER)
-        @Min(value = 0, message = ERROR_MESSAGE_MIN )
-        @Max(value = 2000, message = ERROR_MESSAGE_MAX)
-        Integer lockerNumber,
+        @NotBlank(message = ERROR_MESSAGE_LOCKERNUMBER)
+        String lockerNumber,
 
         @NotNull(message = ERROR_MESSAGE_KEYNUMBER)
         @Min(value = 0, message = ERROR_MESSAGE_MIN)

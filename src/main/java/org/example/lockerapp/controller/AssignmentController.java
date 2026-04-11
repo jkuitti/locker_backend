@@ -6,8 +6,6 @@ import org.example.lockerapp.domain.dto.AssignmentDto;
 import org.example.lockerapp.domain.entity.Assignment;
 import org.example.lockerapp.mapper.Mapper;
 import org.example.lockerapp.service.AssignmentService;
-import org.example.lockerapp.service.LockerService;
-import org.example.lockerapp.service.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +18,11 @@ public class AssignmentController {
 
     private final AssignmentService assignmentService;
     private final Mapper mapper;
-    private final LockerService lockerService;
-    private final RoomService roomService;
 
-    public AssignmentController(AssignmentService assignmentService, Mapper mapper, LockerService lockerService, RoomService roomService) {
+    public AssignmentController(AssignmentService assignmentService, Mapper mapper) {
         this.assignmentService = assignmentService;
         this.mapper = mapper;
-        this.lockerService = lockerService;
-        this.roomService = roomService;
+
     }
 
     @GetMapping(path = "/assignments/{assignmentId}")

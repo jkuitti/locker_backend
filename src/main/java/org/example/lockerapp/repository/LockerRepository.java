@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface LockerRepository extends JpaRepository<Locker, Long> {
     List<Locker> findAllByRoomId(Long roomId);
+
+    boolean existsByRoomId(Long roomId);
 }

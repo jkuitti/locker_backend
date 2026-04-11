@@ -1,18 +1,20 @@
 package org.example.lockerapp.domain.entity;
 
 import jakarta.persistence.*;
+import org.example.lockerapp.converter.LocalDateTimeNoMillisConverter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "assingments")
+@Table(name = "assignments")
 public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "assigned_at", nullable = false)
+    @Convert(converter = LocalDateTimeNoMillisConverter.class)
     private LocalDateTime assignedAt;
 
     @Column(name = "employee_last_name", nullable = false)

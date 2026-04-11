@@ -16,7 +16,9 @@ public class MapperImpl implements Mapper {
         return new RoomDto(
                 room.getId(),
                 room.getName(),
-                room.getGender()
+                room.getGender(),
+                room.getGridRows(),
+                room.getGridCols()
         );
     }
 
@@ -27,7 +29,9 @@ public class MapperImpl implements Mapper {
                 locker.getLockerNumber(),
                 locker.getKeyNumber(),
                 locker.getStatus(),
-                locker.getRoom(),
+                locker.getRoom().getId(),
+                locker.getRoom().getName(),
+                locker.getRoom().getGender(),
                 locker.getGridX(),
                 locker.getGridY()
         );
@@ -40,7 +44,9 @@ public class MapperImpl implements Mapper {
                 assignment.getAssignedAt(),
                 assignment.getEmployeeLastName(),
                 assignment.getEmployeeFirstName(),
-                assignment.getLocker().getId()
+                assignment.getLocker().getLockerNumber(),
+                assignment.getLocker().getKeyNumber(),
+                assignment.getLocker().getRoom().getGender()
         );
     }
 }

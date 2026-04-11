@@ -6,13 +6,16 @@ DROP TABLE IF EXISTS rooms;
 CREATE TABLE rooms (
                        id INTEGER PRIMARY KEY AUTOINCREMENT,
                        gender TEXT CHECK (gender IN ('MEN','WOMEN')),
-                       name TEXT
+                       name TEXT,
+                       grid_rows INTEGER,
+                       grid_cols INTEGER
+
 );
 
 -- LOCKERS
 CREATE TABLE lockers (
                          id INTEGER PRIMARY KEY AUTOINCREMENT,
-                         locker_number INTEGER NOT NULL,
+                         locker_number TEXT NOT NULL,
                          key_number INTEGER NOT NULL,
                          status TEXT NOT NULL CHECK (status IN ('FREE','OCCUPIED','OUT_OF_SERVICE')),
                          room_id INTEGER NOT NULL,

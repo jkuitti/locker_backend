@@ -1,14 +1,17 @@
 package org.example.lockerapp.domain.dto;
 
+import org.example.lockerapp.domain.entity.Gender;
 import org.example.lockerapp.domain.entity.LockerStatus;
 import org.example.lockerapp.domain.entity.Room;
 
 public record LockerDto(
         Long id,
-        Integer lockerNumber,
+        String lockerNumber,
         Integer keyNumber,
         LockerStatus status,
-        Room room,
+        Long roomId,
+        String roomName,
+        Gender roomGender,
         Integer gridX,
         Integer gridY
 ) {

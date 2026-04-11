@@ -12,7 +12,7 @@ public class Locker {
     private Long id;
 
     @Column(name = "locker_number", nullable = false)
-    private Integer lockerNumber;
+    private String lockerNumber;
 
     @Column(name = "key_number", nullable = false)
     private Integer keyNumber;
@@ -34,7 +34,7 @@ public class Locker {
     public Locker() {
     }
 
-    public Locker(Long id, Integer lockerNumber, Integer keyNumber, LockerStatus status, Room room, Integer gridX, Integer gridY) {
+    public Locker(Long id, String lockerNumber, Integer keyNumber, LockerStatus status, Room room, Integer gridX, Integer gridY) {
         this.id = id;
         this.lockerNumber = lockerNumber;
         this.keyNumber = keyNumber;
@@ -52,11 +52,11 @@ public class Locker {
         this.id = id;
     }
 
-    public Integer getLockerNumber() {
+    public String getLockerNumber() {
         return lockerNumber;
     }
 
-    public void setLockerNumber(Integer lockerNumber) {
+    public void setLockerNumber(String lockerNumber) {
         this.lockerNumber = lockerNumber;
     }
 

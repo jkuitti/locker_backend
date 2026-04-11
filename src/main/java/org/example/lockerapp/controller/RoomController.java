@@ -2,6 +2,7 @@ package org.example.lockerapp.controller;
 
 import jakarta.validation.Valid;
 import org.example.lockerapp.domain.CreateRoomRequest;
+import org.example.lockerapp.domain.CreateRoomSizeUpdateRequest;
 import org.example.lockerapp.domain.dto.RoomDto;
 import org.example.lockerapp.domain.entity.Room;
 import org.example.lockerapp.mapper.Mapper;
@@ -27,7 +28,6 @@ public class RoomController {
     @PostMapping
     public ResponseEntity<RoomDto> createRoom (@Valid @RequestBody CreateRoomRequest createRoomRequest){
         Room room = roomService.createRoom(createRoomRequest);
-        System.out.println("room:" + room);
         RoomDto createdRoomDto = mapper.toDto(room);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRoomDto);
     }
@@ -37,5 +37,32 @@ public class RoomController {
         List<Room> rooms = roomService.listRooms();
         List<RoomDto> roomDtos = rooms.stream().map(mapper::toDto).toList();
         return ResponseEntity.ok(roomDtos);
+    }
+
+    @DeleteMapping(path = "/{roomId}")
+    public ResponseEntity<Void> deleteRoom(
+            @PathVariable Long roomId
+    ){
+        roomService.deleteRoom(roomId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(path = "/{roomId}")
+    public ResponseEntity<RoomDto> getRoomById(
+            @PathVariable Long roomId
+    ){
+        Room room = roomService.getRoomById(roomId);
+        RoomDto roomDto = mapper.toDto(room);
+        return ResponseEntity.ok(roomDto);
+    }
+
+    @PutMapping(path = "/{roomId}")
+    public ResponseEntity<RoomDto> updateRoomSize(
+            @PathVariable Long roomId,
+            @Valid @RequestBody CreateRoomSizeUpdateRequest createRoomSizeUpdateRequest)
+    {
+        Room room = roomService.resizeRoom(roomId, createRoomSizeUpdateRequest);
+        RoomDto roomDto = mapper.toDto(room);
+        return ResponseEntity.ok(roomDto);
     }
 }

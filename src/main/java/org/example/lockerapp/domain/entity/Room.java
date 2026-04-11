@@ -17,13 +17,35 @@ public class Room {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    private Integer gridRows;
+
+    private Integer gridCols;
+
     public Room() {
     }
 
-    public Room(Long id, String name, Gender gender) {
+    public Room(Long id, String name, Gender gender, Integer gridRows, Integer gridCols) {
         this.id = id;
         this.name = name;
         this.gender = gender;
+        this.gridRows = gridRows;
+        this.gridCols = gridCols;
+    }
+
+    public Integer getGridRows() {
+        return gridRows;
+    }
+
+    public void setGridRows(Integer gridRows) {
+        this.gridRows = gridRows;
+    }
+
+    public Integer getGridCols() {
+        return gridCols;
+    }
+
+    public void setGridCols(Integer gridCols) {
+        this.gridCols = gridCols;
     }
 
     public Long getId() {
@@ -69,6 +91,8 @@ public class Room {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", gender=" + gender +
+                ", gridRows=" + gridRows +
+                ", gridCols=" + gridCols +
                 '}';
     }
 }
