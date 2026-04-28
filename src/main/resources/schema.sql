@@ -1,9 +1,6 @@
-DROP TABLE IF EXISTS assignments;
-DROP TABLE IF EXISTS lockers;
-DROP TABLE IF EXISTS rooms;
 
 -- ROOMS
-CREATE TABLE rooms (
+CREATE TABLE IF NOT EXISTS rooms (
                        id INTEGER PRIMARY KEY AUTOINCREMENT,
                        gender TEXT CHECK (gender IN ('MEN','WOMEN')),
                        name TEXT,
@@ -13,7 +10,7 @@ CREATE TABLE rooms (
 );
 
 -- LOCKERS
-CREATE TABLE lockers (
+CREATE TABLE IF NOT EXISTS  lockers (
                          id INTEGER PRIMARY KEY AUTOINCREMENT,
                          locker_number TEXT NOT NULL,
                          key_number INTEGER NOT NULL,
@@ -25,7 +22,7 @@ CREATE TABLE lockers (
 );
 
 -- ASSIGNMENTS
-CREATE TABLE assignments (
+CREATE TABLE IF NOT EXISTS  assignments (
                              id INTEGER PRIMARY KEY AUTOINCREMENT,
                              assigned_at TEXT NOT NULL,
                              locker_id INTEGER NOT NULL UNIQUE,

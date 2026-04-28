@@ -81,3 +81,12 @@ Accept: application/json
 
 GET http://localhost:8080/api/v1/lockers
 Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/v1/assignments/1
+Content-Type: application/json
+
+{
+  "lockerId": 1
+}

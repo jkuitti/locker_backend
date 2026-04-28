@@ -1,6 +1,7 @@
 package org.example.lockerapp.service;
 
 import org.example.lockerapp.domain.CreateLockerRequest;
+import org.example.lockerapp.domain.dto.LockerAssignmentDto;
 import org.example.lockerapp.domain.entity.Locker;
 import org.example.lockerapp.domain.entity.LockerStatus;
 import org.example.lockerapp.domain.entity.Room;
@@ -64,5 +65,10 @@ public class LockerSerciveImpl implements LockerService{
         lockerRepository.findById(lockerId).orElseThrow(()->
                 new LockerNotFoundException(lockerId));
         lockerRepository.deleteById(lockerId);
+    }
+
+    @Override
+    public List<LockerAssignmentDto> listLockerAssigment(Long roomId) {
+        return lockerRepository.findLockersAndAssignments(roomId);
     }
 }

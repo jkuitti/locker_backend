@@ -2,10 +2,13 @@ package org.example.lockerapp.controller;
 
 import jakarta.validation.Valid;
 import org.example.lockerapp.domain.CreateAssignmentRequest;
+import org.example.lockerapp.domain.DeleteAssignmentRequest;
 import org.example.lockerapp.domain.dto.AssignmentDto;
+import org.example.lockerapp.domain.dto.LockerAssignmentDto;
 import org.example.lockerapp.domain.entity.Assignment;
 import org.example.lockerapp.mapper.Mapper;
 import org.example.lockerapp.service.AssignmentService;
+import org.example.lockerapp.service.LockerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +20,12 @@ import java.util.List;
 public class AssignmentController {
 
     private final AssignmentService assignmentService;
+    private final LockerService lockerService;
     private final Mapper mapper;
 
-    public AssignmentController(AssignmentService assignmentService, Mapper mapper) {
+    public AssignmentController(AssignmentService assignmentService, LockerService lockerService, Mapper mapper) {
         this.assignmentService = assignmentService;
+        this.lockerService = lockerService;
         this.mapper = mapper;
 
     }
@@ -59,5 +64,26 @@ public class AssignmentController {
         AssignmentDto assignmentDto = mapper.toDto(assignment);
         return ResponseEntity.ok(assignmentDto);
     }
+
+
+    @DeleteMapping(path = "/assignments/{assignmentId}")
+    public ResponseEntity<Void> deleteAssignment(
+            @PathVariable Long assignmentId,
+            @Valid @RequestBody DeleteAssignmentRequest deleteAssignmentRequest
+    ){
+        assignmentService.deleteAssignment(assignmentId, deleteAssignmentRequest);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/rooms/{roomId}/assignments")
+    public ResponseEntity <List<LockerAssignmentDto>> listRoomAssignments(
+            @PathVariable Long roomId
+    ) {
+        List<LockerAssignmentDto> lockerAssignmentDtos = lockerService.listLockerAssigment(roomId);
+        return  ResponseEntity.ok(lockerAssignmentDtos);
+    }
+
+
+
 
 }

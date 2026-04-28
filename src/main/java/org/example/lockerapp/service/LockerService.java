@@ -1,6 +1,7 @@
 package org.example.lockerapp.service;
 
 import org.example.lockerapp.domain.CreateLockerRequest;
+import org.example.lockerapp.domain.dto.LockerAssignmentDto;
 import org.example.lockerapp.domain.entity.Locker;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +13,6 @@ public interface LockerService {
     Locker findById(Long lockerId);
     List<Locker> getAllLockers();
     void deleteLocker(Long lockerId);
+    List<LockerAssignmentDto> listLockerAssigment(Long roomId);
 
 }
